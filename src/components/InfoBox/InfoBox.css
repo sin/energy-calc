@@ -1,0 +1,23 @@
+.InfoBox {
+    padding-top: 30px;
+}
+
+.InfoBox__name {
+    display: block;
+    font-size: 1.1em;
+}
+
+.InfoBox__value {
+    font-size: 2.5em;
+    color: green;
+}
+
+.InfoBox .warning {
+    color: red;
+}
+
+.InfoBox__unit {
+    font-size: 1.1em;
+    color: gray;
+    padding-left: 5px;
+}

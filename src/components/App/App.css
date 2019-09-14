@@ -1,0 +1,47 @@
+.App {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.title {
+  max-width: 320px;
+}
+
+.title h1 {
+  font-size: 2.2em;
+  padding: 20px;
+  text-align: right;
+}
+
+.colored {
+  color: green;
+}
+
+.lead p {
+  margin-top: 50px;
+  padding: 24px 12px;
+  border-left: 1px solid gray;
+  max-width: 500px;
+}
+
+.Sliders {
+  width: 380px;
+}
+
+.Results {
+  padding-top: 30px;
+}

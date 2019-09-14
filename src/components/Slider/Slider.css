@@ -1,0 +1,17 @@
+.slider {
+    width: 180px;
+    padding: 20px;
+}
+
+.input-range__label--value {
+    display: none;
+}
+
+.input-range__track--active {
+    background: #dd2d2d;
+}
+
+.input-range__slider {
+    background: #dd2d2d;
+    border: 1px solid #dd2d2d;
+}
