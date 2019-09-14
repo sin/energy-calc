@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "007b056e9d04adc3b28939bfdb5bc860",
+    "revision": "df5ba0745d3c22d010e09aec9539171e",
     "url": "/energy-calc/index.html"
   },
   {
