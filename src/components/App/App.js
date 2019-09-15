@@ -47,11 +47,11 @@ class App extends Component {
     const { nuclear, hydro, solar, wind, chp, gas, coal, oil, demand } = installedPowers
 
     const CO2 = formatCO2(fuelTable.reduce((a, b) => a + b[3], 0))
-    const nuclearWaste = fuelTable[0][2]
-    const waste = formatWaste(fuelTable.reduce((a, b) => a + b[2], 0) - nuclearWaste)
+    const nuclearW = fuelTable[0][2]
+    const nuclearWaste = formatWaste(nuclearW)
+    const waste = formatWaste(fuelTable.reduce((a, b) => a + b[2], 0) - nuclearW)
     const hasDeficit = demand - powerAvailable > 0
 
-    console.log({ powerAvailable, demand })
     return (
       <div className="App">
         <div className="row">
@@ -87,7 +87,7 @@ class App extends Component {
               </div>
               <div className="column">
                 <InfoBox name="Emisje CO2" value={CO2} unit={'mln ton'} />
-                <InfoBox name="Odpady jądrowe" value={nuclearWaste} unit={'ton'} />
+                <InfoBox name="Odpady jądrowe" value={nuclearWaste} unit={'tys. ton'} />
                 <InfoBox name="Odpady stałe" value={waste} unit={'tys. ton'} />
               </div>
             </div>
