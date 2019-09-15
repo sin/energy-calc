@@ -39,7 +39,7 @@
 }
 
 .Sliders {
-  width: 380px;
+  max-width: 440px;
 }
 
 .Results {
