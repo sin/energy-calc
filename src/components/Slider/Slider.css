@@ -1,6 +1,36 @@
-.slider {
+.Slider {
     width: 180px;
-    padding: 20px;
+    padding: 25px 20px;
+}
+
+.Slider__label {
+    padding-bottom: 10px;
+}
+
+.Slider__label:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.Slider__name {
+    float: left;
+    width: 50%;
+    font-weight: 500;
+    color: #444444;
+}
+
+.Slider__value {
+    float: left;
+    width: 50%;
+    text-align: right;
+    font-weight: 700;
+    color: red;
+}
+
+.Slider__unit {
+    font-weight: 400;
+    color: #888888;
 }
 
 .input-range__label--value {
@@ -14,4 +44,14 @@
 .input-range__slider {
     background: #dd2d2d;
     border: 1px solid #dd2d2d;
+}
+
+.input-range__label--max .input-range__label-container,
+.input-range__label--min .input-range__label-container {
+    left: 0;
+}
+
+.input-range__label--min,
+.input-range__label--max {
+    bottom: -1rem;
 }
