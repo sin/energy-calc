@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as store from '../../store'
 import Slider from '../Slider/Slider'
 import InfoBox from '../InfoBox/InfoBox'
 import { getData } from '../../simulator'
@@ -9,21 +10,10 @@ const formatGW = num => formatNum(num / 1e3)
 const formatWaste = num => formatNum(num / 1e3)
 const formatCO2 = num => formatNum(num / 1e6)
 
-const INSTALLED_POWERS = {
-  nuclear: 9000,
-  hydro: 16000,
-  wind: 7500,
-  solar: 500,
-  gas: 500,
-  oil: 1000,
-  chp: 4500,
-  coal: 0,
-  demand: 26700
-}
-
+const installed = store.load()
 const defaultState = {
-  installed: { ...INSTALLED_POWERS },
-  ...getData(INSTALLED_POWERS)
+  installed,
+  ...getData(installed)
 }
 
 class App extends Component {
@@ -31,6 +21,7 @@ class App extends Component {
     super(props)
 
     this.state = defaultState
+    this.reset = this.reset.bind(this)
   }
 
   update(name, value) {
@@ -39,6 +30,12 @@ class App extends Component {
       [name]: value
     }
 
+    store.save(installed)
+    this.setState({ installed, ...getData(installed) })
+  }
+
+  reset() {
+    const installed = store.reset()
     this.setState({ installed, ...getData(installed) })
   }
 
@@ -114,6 +111,9 @@ class App extends Component {
                 <Slider name="Węgiel" value={coal} update={value => this.update('coal', value)} />
                 <Slider name="Ropa" value={oil} update={value => this.update('oil', value)} />
               </div>
+            </div>
+            <div className="Reset">
+              <button onClick={this.reset}>Reset</button>
             </div>
           </div>
         </div>
