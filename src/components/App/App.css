@@ -45,3 +45,22 @@
 .Results {
   padding-top: 30px;
 }
+
+.Reset {
+  padding: 20px 15px;
+  text-align: right;
+}
+
+.Reset button {
+  color: white;
+  font-size: 1.15em;
+  background: #10a2d3;
+  padding: 10px;
+  border-radius: 6px;
+  border: 0;
+}
+
+.Reset button:active,
+.Reset button:hover {
+  background: #057da5;
+}
