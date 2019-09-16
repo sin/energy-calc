@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Slider from '../Slider/Slider'
 import InfoBox from '../InfoBox/InfoBox'
-import { getEnergyData } from '../../simulator/'
+import { getData } from '../../simulator'
 import './App.css'
 
 const formatNum = num => num.toFixed(1).replace('.', ',')
@@ -22,8 +22,8 @@ const INSTALLED_POWERS = {
 }
 
 const defaultState = {
-  installedPowers: { ...INSTALLED_POWERS },
-  ...getEnergyData(INSTALLED_POWERS)
+  installed: { ...INSTALLED_POWERS },
+  ...getData(INSTALLED_POWERS)
 }
 
 class App extends Component {
@@ -34,23 +34,23 @@ class App extends Component {
   }
 
   update(name, value) {
-    const installedPowers = {
-      ...this.state.installedPowers,
+    const installed = {
+      ...this.state.installed,
       [name]: value
     }
 
-    this.setState({ installedPowers, ...getEnergyData(installedPowers) })
+    this.setState({ installed, ...getData(installed) })
   }
 
   render() {
-    const { installedPowers, powerInstalled, powerAvailable, powerRatio, fuelTable } = this.state
-    const { nuclear, hydro, solar, wind, chp, gas, coal, oil, demand } = installedPowers
+    const { installed, total, available, ratio, fuels } = this.state
+    const { nuclear, hydro, solar, wind, chp, gas, coal, oil, demand } = installed
 
-    const CO2 = formatCO2(fuelTable.reduce((a, b) => a + b[3], 0))
-    const nuclearW = fuelTable[0][2]
+    const CO2 = formatCO2(Object.values(fuels).reduce((sum, { co2 }) => sum + co2, 0))
+    const nuclearW = fuels.nuclear.waste
     const nuclearWaste = formatWaste(nuclearW)
-    const waste = formatWaste(fuelTable.reduce((a, b) => a + b[2], 0) - nuclearW)
-    const hasDeficit = demand - powerAvailable > 0
+    const waste = formatWaste(Object.values(fuels).reduce((sum, { waste }) => sum + waste, 0))
+    const hasDeficit = demand - available > 0
 
     return (
       <div className="App">
@@ -76,14 +76,14 @@ class App extends Component {
           <div className="Results column">
             <div className="row">
               <div className="column">
-                <InfoBox name="Moc zainstalowana" value={formatGW(powerInstalled)} unit={'GW'} />
+                <InfoBox name="Moc zainstalowana" value={formatGW(total)} unit={'GW'} />
                 <InfoBox
                   name="Moc dostępna"
-                  value={formatGW(powerAvailable)}
+                  value={formatGW(available)}
                   unit={'GW'}
                   type={hasDeficit ? 'warning' : ''}
                 />
-                <InfoBox name="Ratio" value={formatNum(powerRatio)} />
+                <InfoBox name="Ratio" value={formatNum(ratio)} />
               </div>
               <div className="column">
                 <InfoBox name="Emisje CO2" value={CO2} unit={'mln ton'} />

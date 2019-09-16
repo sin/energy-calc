@@ -1,5 +1,5 @@
 export const POWER_TABLE_LABELS = ['%', 'Demand', 'Nuclear', 'CHP', 'Coal', 'Wind', 'Solar']
-export const REGULATING_POWER_LABELS = ['Hydro', 'Oil', 'Gas']
+export const REGULATING_POWER_LABELS = ['hydro', 'gas', 'oil']
 export const ENERGY_TABLE_LABELS = ['Name', 'Energy']
 export const FUEL_TABLE_LABELS = ['', 'Fuel', 'Solid Waste', 'CO2']
 export const ADJUSTED_POWER_TABLE_LABELS = [
@@ -29,7 +29,10 @@ export const MAX_POWERS = {
   solar: 65,
   chp: 75,
   coal: 100,
-  demand: 100
+  demand: 100,
+  hydro: 42,
+  oil: 100,
+  gas: 100
 }
 
 export const CAPACITY = {
