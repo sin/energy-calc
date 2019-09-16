@@ -1,7 +1,7 @@
 import { CAPACITY_FACTORS } from './constants'
 import { round, sum, transpose } from './utils'
 
-export const createPowerChartTable = powers => {
+export const getChart = powers => {
   const [installedPowers, availablePowers] = transpose(
     Object.entries(powers)
       .filter(([powerType]) => powerType !== 'demand')
@@ -11,14 +11,9 @@ export const createPowerChartTable = powers => {
       ])
   )
 
-  const installed = installedPowers.reduce(sum)
+  const total = installedPowers.reduce(sum)
   const available = availablePowers.reduce(sum)
-  const balance = Math.min(0, round(powers.demand - available))
+  const ratio = round(total / available)
 
-  const powerChartTable = [
-    ['Installed', ...installedPowers, '-'],
-    ['Available', ...availablePowers, balance]
-  ]
-
-  return [powerChartTable, installed, available, balance]
+  return { total, available, ratio }
 }
