@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/energy-calc/static/css/main.8ce4ffce.chunk.css",
-    "main.js": "/energy-calc/static/js/main.2643702d.chunk.js",
-    "main.js.map": "/energy-calc/static/js/main.2643702d.chunk.js.map",
+    "main.js": "/energy-calc/static/js/main.56e5f90d.chunk.js",
+    "main.js.map": "/energy-calc/static/js/main.56e5f90d.chunk.js.map",
     "runtime~main.js": "/energy-calc/static/js/runtime~main.d4e8ddea.js",
     "runtime~main.js.map": "/energy-calc/static/js/runtime~main.d4e8ddea.js.map",
     "static/css/2.8b1b5f58.chunk.css": "/energy-calc/static/css/2.8b1b5f58.chunk.css",
     "static/js/2.e9d2b403.chunk.js": "/energy-calc/static/js/2.e9d2b403.chunk.js",
     "static/js/2.e9d2b403.chunk.js.map": "/energy-calc/static/js/2.e9d2b403.chunk.js.map",
     "index.html": "/energy-calc/index.html",
-    "precache-manifest.1f596808d81a0021fe7e0b7266de9107.js": "/energy-calc/precache-manifest.1f596808d81a0021fe7e0b7266de9107.js",
+    "precache-manifest.7b41c0fcb216542cd1a0b8091b79dbc5.js": "/energy-calc/precache-manifest.7b41c0fcb216542cd1a0b8091b79dbc5.js",
     "service-worker.js": "/energy-calc/service-worker.js",
     "static/css/2.8b1b5f58.chunk.css.map": "/energy-calc/static/css/2.8b1b5f58.chunk.css.map",
     "static/css/main.8ce4ffce.chunk.css.map": "/energy-calc/static/css/main.8ce4ffce.chunk.css.map"
