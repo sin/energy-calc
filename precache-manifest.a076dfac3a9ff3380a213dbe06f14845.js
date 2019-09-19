@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3d500d25a1ea6860ae5c0757d4a73393",
+    "revision": "f062e953b7de9d8a55a0815c68ffb015",
     "url": "/energy-calc/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/energy-calc/static/css/2.8b1b5f58.chunk.css"
   },
   {
-    "revision": "e44d19ef96fac5299a14",
+    "revision": "4e73e577e4f38445cc06",
     "url": "/energy-calc/static/css/main.34d4e920.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/energy-calc/static/js/2.77138b88.chunk.js"
   },
   {
-    "revision": "e44d19ef96fac5299a14",
-    "url": "/energy-calc/static/js/main.a19f794a.chunk.js"
+    "revision": "4e73e577e4f38445cc06",
+    "url": "/energy-calc/static/js/main.bead5654.chunk.js"
   },
   {
     "revision": "06dfcfb69d01ee0168ae",
