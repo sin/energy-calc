@@ -48,7 +48,7 @@ class App extends Component {
   render() {
     const { installed, results, today } = this.state
     const { nuclear, hydro, solar, wind, chp, gas, coal, oil, demand } = installed
-    const hasDeficit = demand - results.available > 0
+    const hasDeficit = demand - results.totalAvailable > 0
 
     return (
       <div className="App">
