@@ -7,6 +7,7 @@ import { getData } from '../../simulator'
 import { INSTALLED_TODAY } from '../../simulator/constants'
 import { formatNumber, sum } from '../../simulator/utils'
 import './App.css'
+import ExternalitiesTable from '../ExternalitiesTable/ExternalitiesTable'
 
 const installed = store.load()
 const defaultState = {
@@ -177,6 +178,8 @@ class App extends Component {
               totalFn={arr => arr.reduce(sum)}
               format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
             />
+            <h3>{'Wpływ na środowisko'}</h3>
+            <ExternalitiesTable current={today} proposed={results} />
           </div>
         ) : null}
       </div>

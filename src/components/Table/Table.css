@@ -1,0 +1,23 @@
+.Table {
+    display: table;
+    table-layout: fixed;
+    margin: 0 0 40px 0;
+    width: 100%;
+    border-collapse: collapse;
+    border-style: hidden;
+}
+
+.Table th {
+    text-align: left;
+    background: #eeeeee;
+}
+
+.Table td {
+    border-top: 1px solid #dedede;
+}
+
+.Table td,
+.Table th {
+    padding: 18px 8px;
+    display: table-cell;
+}

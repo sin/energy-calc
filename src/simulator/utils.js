@@ -49,3 +49,5 @@ export const formatNumber = ({ commaPos = 0, fractionDigits = 1 } = {}) => value
  *
  */
 export const identity = value => value
+
+export const isNumber = value => typeof value === 'number'
