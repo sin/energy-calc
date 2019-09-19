@@ -40,8 +40,10 @@ export const transpose = array => Object.keys(array[0]).map(column => array.map(
 /**
  * formatting
  */
-export const formatNumber = multiply => value =>
-  Number((value / 10 ** multiply).toFixed(1)).toLocaleString()
+export const formatNumber = ({ commaPos = 0, fractionDigits = 1 } = {}) => value =>
+  Number((value / 10 ** commaPos).toFixed(1)).toLocaleString([], {
+    minimumFractionDigits: fractionDigits
+  })
 
 /**
  *

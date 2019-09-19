@@ -75,12 +75,12 @@ class App extends Component {
               <div className="column">
                 <InfoBox
                   name="Moc zainstalowana"
-                  value={formatNumber(3)(results.totalInstalled)}
+                  value={formatNumber({ commaPos: 3 })(results.totalInstalled)}
                   unit={'GW'}
                 />
                 <InfoBox
                   name="Moc dostępna"
-                  value={formatNumber(3)(results.totalAvailable)}
+                  value={formatNumber({ commaPos: 3 })(results.totalAvailable)}
                   unit={'GW'}
                   type={hasDeficit ? 'warning' : ''}
                 />
@@ -89,17 +89,17 @@ class App extends Component {
               <div className="column">
                 <InfoBox
                   name="Emisje CO2"
-                  value={formatNumber(3)(results.totalCO2)}
+                  value={formatNumber({ commaPos: 3 })(results.totalCO2)}
                   unit={'mln ton'}
                 />
                 <InfoBox
                   name="Odpady jądrowe"
-                  value={formatNumber(0)(results.nuclear)}
+                  value={formatNumber()(results.nuclear)}
                   unit={'tys. ton'}
                 />
                 <InfoBox
                   name="Odpady stałe"
-                  value={formatNumber(0)(results.totalWaste)}
+                  value={formatNumber()(results.totalWaste)}
                   unit={'tys. ton'}
                 />
               </div>
@@ -147,7 +147,7 @@ class App extends Component {
               proposed={results.installed}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber(3)}
+              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
             />
             <h3>{'Moc dostępna (GW)'}</h3>
             <ComparisonTable
@@ -155,7 +155,7 @@ class App extends Component {
               proposed={results.available}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber(3)}
+              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
             />
             <h3>{'Wyprodukowana energia (TWh / rok)'}</h3>
             <ComparisonTable
@@ -163,7 +163,7 @@ class App extends Component {
               proposed={results.energy}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber(0)}
+              format={formatNumber({ fractionDigits: 0 })}
             />
             <h3>
               {'Emisje CO'}
@@ -175,7 +175,7 @@ class App extends Component {
               proposed={results.co2}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber(3)}
+              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
             />
           </div>
         ) : null}
