@@ -3,6 +3,7 @@
     table-layout: fixed;
     margin: 0 0 40px 0;
     width: 100%;
+    min-width: 800px;
     border-collapse: collapse;
     border-style: hidden;
 }

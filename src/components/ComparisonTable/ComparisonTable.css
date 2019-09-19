@@ -1,3 +1,39 @@
 .ComparisonTable th:first-child {
     width: 22%;
 }
+
+@media(max-width: 840px) {
+    .ComparisonTable {
+        min-width: auto;
+    }
+
+    .ComparisonTable,
+    .ComparisonTable thead,
+    .ComparisonTable tbody,
+    .ComparisonTable tr {
+        display: flex;
+        flex-shrink: 0;
+        flex-grow: 1;
+    }
+
+    .ComparisonTable tr {
+        flex-direction: column;
+    }
+
+    .ComparisonTable th,
+    .ComparisonTable td {
+        display: block;
+        white-space: nowrap;
+        border-top: 1px solid #dedede;
+        background: #ffffff;
+        font-weight: 400;
+    }
+
+    .ComparisonTable th:first-child,
+    .ComparisonTable td:first-child {
+        width: auto;
+        text-align: left;
+        background: #eeeeee;
+        font-weight: 700;
+    }
+}
