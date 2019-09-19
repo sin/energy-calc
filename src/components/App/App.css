@@ -46,12 +46,30 @@
   padding-top: 30px;
 }
 
+.Buttons {
 .Reset {
   padding: 20px 15px;
   text-align: right;
 }
 
-.Reset button {
+.Buttons button {
+  outline: none;
+  cursor: pointer;
+}
+
+.DetailsToggle {
+  font-size: 0.9em;
+  border: 0;
+  padding-right: 15px;
+  color: #999;
+}
+
+.DetailsToggle:hover,
+.DetailsToggle:active {
+  color: #666;
+}
+
+.ResetButton {
   color: white;
   font-size: 1.15em;
   background: #10a2d3;
@@ -60,7 +78,7 @@
   border: 0;
 }
 
-.Reset button:active,
-.Reset button:hover {
+.ResetButton:active,
+.ResetButton:hover {
   background: #057da5;
 }

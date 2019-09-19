@@ -16,311 +16,149 @@ const expected = [
   {
     deficit: 0,
     demand: 26700,
-    groups: { baseload: 12875, regulating: 8250, renewables: 5575 },
     interval: 0,
-    powers: {
-      chp: 3375,
-      coal: 500,
-      gas: 1000,
-      hydro: 6720,
-      nuclear: 9000,
-      oil: 530,
-      solar: 325,
-      wind: 5250
-    }
+    powers: [9000, 6720, 5250, 325, 3375, 1000, 300, 730],
+    types: { baseload: 12675, regulating: 8450, renewables: 5575 }
   },
   {
     deficit: 0,
     demand: 24767,
-    groups: { baseload: 12463, regulating: 7933, renewables: 4371 },
     interval: 5,
-    powers: {
-      chp: 3142,
-      coal: 500,
-      gas: 1000,
-      hydro: 6720,
-      nuclear: 8821,
-      oil: 213,
-      solar: 186,
-      wind: 4185
-    }
+    powers: [8821, 6720, 4185, 186, 3142, 1000, 294, 419],
+    types: { baseload: 12257, regulating: 8139, renewables: 4371 }
   },
   {
     deficit: 0,
     demand: 23460,
-    groups: { baseload: 12058, regulating: 7709, renewables: 3693 },
     interval: 10,
-    powers: {
-      chp: 2916,
-      coal: 500,
-      gas: 989,
-      hydro: 6720,
-      nuclear: 8642,
-      oil: 0,
-      solar: 124,
-      wind: 3569
-    }
+    powers: [8642, 6720, 3569, 124, 2916, 1000, 288, 201],
+    types: { baseload: 11846, regulating: 7921, renewables: 3693 }
   },
   {
     deficit: 0,
     demand: 22534,
-    groups: { baseload: 11669, regulating: 7552, renewables: 3313 },
     interval: 15,
-    powers: {
-      chp: 2698,
-      coal: 500,
-      gas: 832,
-      hydro: 6720,
-      nuclear: 8471,
-      oil: 0,
-      solar: 97,
-      wind: 3216
-    }
+    powers: [8471, 6720, 3216, 97, 2698, 1000, 282, 50],
+    types: { baseload: 11451, regulating: 7770, renewables: 3313 }
   },
   {
     deficit: 0,
     demand: 21817,
-    groups: { baseload: 11302, regulating: 7437, renewables: 3078 },
     interval: 20,
-    powers: {
-      chp: 2491,
-      coal: 500,
-      gas: 717,
-      hydro: 6720,
-      nuclear: 8311,
-      oil: 0,
-      solar: 81,
-      wind: 2997
-    }
+    powers: [8311, 6720, 2997, 81, 2491, 940, 277, 0],
+    types: { baseload: 11079, regulating: 7660, renewables: 3078 }
   },
   {
     deficit: 0,
     demand: 21203,
-    groups: { baseload: 10962, regulating: 7339, renewables: 2902 },
     interval: 25,
-    powers: {
-      chp: 2296,
-      coal: 500,
-      gas: 619,
-      hydro: 6720,
-      nuclear: 8166,
-      oil: 0,
-      solar: 69,
-      wind: 2833
-    }
+    powers: [8166, 6720, 2833, 69, 2296, 847, 272, 0],
+    types: { baseload: 10734, regulating: 7567, renewables: 2902 }
   },
   {
     deficit: 0,
     demand: 20629,
-    groups: { baseload: 10651, regulating: 7241, renewables: 2737 },
     interval: 30,
-    powers: {
-      chp: 2116,
-      coal: 500,
-      gas: 521,
-      hydro: 6720,
-      nuclear: 8035,
-      oil: 0,
-      solar: 58,
-      wind: 2679
-    }
+    powers: [8035, 6720, 2679, 58, 2116, 753, 268, 0],
+    types: { baseload: 10419, regulating: 7473, renewables: 2737 }
   },
   {
     deficit: 0,
     demand: 20067,
-    groups: { baseload: 10365, regulating: 7135, renewables: 2567 },
     interval: 35,
-    powers: {
-      chp: 1950,
-      coal: 500,
-      gas: 415,
-      hydro: 6720,
-      nuclear: 7915,
-      oil: 0,
-      solar: 51,
-      wind: 2516
-    }
+    powers: [7915, 6720, 2516, 51, 1950, 651, 264, 0],
+    types: { baseload: 10129, regulating: 7371, renewables: 2567 }
   },
   {
     deficit: 0,
     demand: 19513,
-    groups: { baseload: 10102, regulating: 7021, renewables: 2390 },
     interval: 40,
-    powers: {
-      chp: 1799,
-      coal: 500,
-      gas: 301,
-      hydro: 6720,
-      nuclear: 7803,
-      oil: 0,
-      solar: 47,
-      wind: 2343
-    }
+    powers: [7803, 6720, 2343, 47, 1799, 541, 260, 0],
+    types: { baseload: 9862, regulating: 7261, renewables: 2390 }
   },
   {
     deficit: 0,
     demand: 18972,
-    groups: { baseload: 9854, regulating: 6908, renewables: 2210 },
     interval: 45,
-    powers: {
-      chp: 1663,
-      coal: 500,
-      gas: 188,
-      hydro: 6720,
-      nuclear: 7691,
-      oil: 0,
-      solar: 45,
-      wind: 2165
-    }
+    powers: [7691, 6720, 2165, 45, 1663, 432, 256, 0],
+    types: { baseload: 9610, regulating: 7152, renewables: 2210 }
   },
   {
     deficit: 0,
     demand: 18457,
-    groups: { baseload: 9611, regulating: 6816, renewables: 2030 },
     interval: 50,
-    powers: {
-      chp: 1542,
-      coal: 500,
-      gas: 96,
-      hydro: 6720,
-      nuclear: 7569,
-      oil: 0,
-      solar: 37,
-      wind: 1993
-    }
+    powers: [7569, 6720, 1993, 37, 1542, 344, 252, 0],
+    types: { baseload: 9363, regulating: 7064, renewables: 2030 }
   },
   {
     deficit: 0,
     demand: 17977,
-    groups: { baseload: 9363, regulating: 6762, renewables: 1852 },
     interval: 55,
-    powers: {
-      chp: 1435,
-      coal: 500,
-      gas: 42,
-      hydro: 6720,
-      nuclear: 7428,
-      oil: 0,
-      solar: 13,
-      wind: 1839
-    }
+    powers: [7428, 6720, 1839, 13, 1435, 294, 248, 0],
+    types: { baseload: 9111, regulating: 7014, renewables: 1852 }
   },
   {
     deficit: 0,
     demand: 17533,
-    groups: { baseload: 9097, regulating: 6730, renewables: 1706 },
     interval: 60,
-    powers: {
-      chp: 1340,
-      coal: 500,
-      gas: 10,
-      hydro: 6720,
-      nuclear: 7257,
-      oil: 0,
-      solar: 0,
-      wind: 1706
-    }
+    powers: [7257, 6720, 1706, 0, 1340, 268, 242, 0],
+    types: { baseload: 8839, regulating: 6988, renewables: 1706 }
   },
   {
     deficit: 0,
     demand: 17115,
-    groups: { baseload: 8804, regulating: 6717, renewables: 1594 },
     interval: 65,
-    powers: {
-      chp: 1255,
-      coal: 500,
-      gas: 0,
-      hydro: 6717,
-      nuclear: 7049,
-      oil: 0,
-      solar: 0,
-      wind: 1594
-    }
+    powers: [7049, 6720, 1594, 0, 1255, 262, 235, 0],
+    types: { baseload: 8539, regulating: 6982, renewables: 1594 }
   },
   {
     deficit: 0,
     demand: 16703,
-    groups: { baseload: 8475, regulating: 6731, renewables: 1497 },
     interval: 70,
-    powers: {
-      chp: 1178,
-      coal: 500,
-      gas: 11,
-      hydro: 6720,
-      nuclear: 6797,
-      oil: 0,
-      solar: 0,
-      wind: 1497
-    }
+    powers: [6797, 6720, 1497, 0, 1178, 284, 227, 0],
+    types: { baseload: 8202, regulating: 7004, renewables: 1497 }
   },
   {
     deficit: 0,
     demand: 16258,
-    groups: { baseload: 8109, regulating: 6746, renewables: 1403 },
     interval: 75,
-    powers: {
-      chp: 1107,
-      coal: 500,
-      gas: 26,
-      hydro: 6720,
-      nuclear: 6502,
-      oil: 0,
-      solar: 0,
-      wind: 1403
-    }
+    powers: [6502, 6720, 1403, 0, 1107, 309, 217, 0],
+    types: { baseload: 7826, regulating: 7029, renewables: 1403 }
   },
   {
     deficit: 0,
     demand: 15735,
-    groups: { baseload: 7708, regulating: 6732, renewables: 1295 },
     interval: 80,
-    powers: {
-      chp: 1039,
-      coal: 500,
-      gas: 12,
-      hydro: 6720,
-      nuclear: 6169,
-      oil: 0,
-      solar: 0,
-      wind: 1295
-    }
+    powers: [6169, 6720, 1295, 0, 1039, 306, 206, 0],
+    types: { baseload: 7414, regulating: 7026, renewables: 1295 }
   },
   {
     deficit: 0,
     demand: 15075,
-    groups: { baseload: 7285, regulating: 6631, renewables: 1159 },
     interval: 85,
-    powers: {
-      chp: 969,
-      coal: 500,
-      gas: 0,
-      hydro: 6631,
-      nuclear: 5816,
-      oil: 0,
-      solar: 0,
-      wind: 1159
-    }
+    powers: [5816, 6720, 1159, 0, 969, 217, 194, 0],
+    types: { baseload: 6979, regulating: 6937, renewables: 1159 }
   },
   {
     deficit: 0,
     demand: 14215,
-    groups: { baseload: 6865, regulating: 6366, renewables: 984 },
     interval: 90,
-    powers: { chp: 895, coal: 500, gas: 0, hydro: 6366, nuclear: 5470, oil: 0, solar: 0, wind: 984 }
+    powers: [5470, 6684, 984, 0, 895, 0, 182, 0],
+    types: { baseload: 6547, regulating: 6684, renewables: 984 }
   },
   {
     deficit: 0,
     demand: 13094,
-    groups: { baseload: 6484, regulating: 5836, renewables: 774 },
     interval: 95,
-    powers: { chp: 810, coal: 500, gas: 0, hydro: 5836, nuclear: 5174, oil: 0, solar: 0, wind: 774 }
+    powers: [5174, 6164, 774, 0, 810, 0, 172, 0],
+    types: { baseload: 6156, regulating: 6164, renewables: 774 }
   },
   {
     deficit: 0,
     demand: 11658,
-    groups: { baseload: 6202, regulating: 4906, renewables: 550 },
     interval: 100,
-    powers: { chp: 712, coal: 500, gas: 0, hydro: 4906, nuclear: 4990, oil: 0, solar: 0, wind: 550 }
+    powers: [4990, 5240, 550, 0, 712, 0, 166, 0],
+    types: { baseload: 5868, regulating: 5240, renewables: 550 }
   }
 ]
 

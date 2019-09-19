@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import * as store from '../../store'
 import Slider from '../Slider/Slider'
 import InfoBox from '../InfoBox/InfoBox'
+import ComparisonTable from '../ComparisonTable/ComparisonTable'
 import { getData } from '../../simulator'
+import { INSTALLED_TODAY } from '../../simulator/constants'
+import { formatNumber, sum } from '../../simulator/utils'
 import './App.css'
-
-const formatNum = num => num.toFixed(1).replace('.', ',')
-const formatGW = num => formatNum(num / 1e3)
-const formatWaste = num => formatNum(num / 1e3)
-const formatCO2 = num => formatNum(num / 1e6)
 
 const installed = store.load()
 const defaultState = {
   installed,
-  ...getData(installed)
+  isDetails: false,
+  today: getData(INSTALLED_TODAY),
+  results: getData(installed)
 }
 
 class App extends Component {
@@ -22,6 +22,7 @@ class App extends Component {
 
     this.state = defaultState
     this.reset = this.reset.bind(this)
+    this.toggleDetails = this.toggleDetails.bind(this)
   }
 
   update(name, value) {
@@ -31,23 +32,22 @@ class App extends Component {
     }
 
     store.save(installed)
-    this.setState({ installed, ...getData(installed) })
+    this.setState(currentState => ({ ...currentState, installed, results: getData(installed) }))
   }
 
   reset() {
     const installed = store.reset()
-    this.setState({ installed, ...getData(installed) })
+    this.setState(currentState => ({ ...currentState, installed, results: getData(installed) }))
+  }
+
+  toggleDetails() {
+    this.setState(currentState => ({ ...currentState, isDetails: !currentState.isDetails }))
   }
 
   render() {
-    const { installed, total, available, ratio, fuels } = this.state
+    const { installed, results, today } = this.state
     const { nuclear, hydro, solar, wind, chp, gas, coal, oil, demand } = installed
-
-    const CO2 = formatCO2(Object.values(fuels).reduce((sum, { co2 }) => sum + co2, 0))
-    const nuclearW = fuels.nuclear.waste
-    const nuclearWaste = formatWaste(nuclearW)
-    const waste = formatWaste(Object.values(fuels).reduce((sum, { waste }) => sum + waste, 0))
-    const hasDeficit = demand - available > 0
+    const hasDeficit = demand - results.available > 0
 
     return (
       <div className="App">
@@ -73,19 +73,35 @@ class App extends Component {
           <div className="Results column">
             <div className="row">
               <div className="column">
-                <InfoBox name="Moc zainstalowana" value={formatGW(total)} unit={'GW'} />
+                <InfoBox
+                  name="Moc zainstalowana"
+                  value={formatNumber(3)(results.totalInstalled)}
+                  unit={'GW'}
+                />
                 <InfoBox
                   name="Moc dostępna"
-                  value={formatGW(available)}
+                  value={formatNumber(3)(results.totalAvailable)}
                   unit={'GW'}
                   type={hasDeficit ? 'warning' : ''}
                 />
-                <InfoBox name="Ratio" value={formatNum(ratio)} />
+                <InfoBox name="Ratio" value={formatNumber(0)(results.ratio)} />
               </div>
               <div className="column">
-                <InfoBox name="Emisje CO2" value={CO2} unit={'mln ton'} />
-                <InfoBox name="Odpady jądrowe" value={nuclearWaste} unit={'tys. ton'} />
-                <InfoBox name="Odpady stałe" value={waste} unit={'tys. ton'} />
+                <InfoBox
+                  name="Emisje CO2"
+                  value={formatNumber(3)(results.totalCO2)}
+                  unit={'mln ton'}
+                />
+                <InfoBox
+                  name="Odpady jądrowe"
+                  value={formatNumber(0)(results.nuclear)}
+                  unit={'tys. ton'}
+                />
+                <InfoBox
+                  name="Odpady stałe"
+                  value={formatNumber(0)(results.totalWaste)}
+                  unit={'tys. ton'}
+                />
               </div>
             </div>
           </div>
@@ -112,11 +128,57 @@ class App extends Component {
                 <Slider name="Ropa" value={oil} update={value => this.update('oil', value)} />
               </div>
             </div>
-            <div className="Reset">
-              <button onClick={this.reset}>Reset</button>
+            <div className="Buttons">
+              <button onClick={this.toggleDetails} className="DetailsToggle">
+                {this.state.isDetails ? 'ukryj' : 'pokaż'}
+                {' dane szczegółowe'}
+              </button>
+              <button onClick={this.reset} className="ResetButton">
+                Reset
+              </button>
             </div>
           </div>
         </div>
+        {this.state.isDetails ? (
+          <div className="Details">
+            <h3>{'Moc zainstalowana (GW)'}</h3>
+            <ComparisonTable
+              current={today.installed}
+              proposed={results.installed}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(3)}
+            />
+            <h3>{'Moc dostępna (GW)'}</h3>
+            <ComparisonTable
+              current={today.available}
+              proposed={results.available}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(3)}
+            />
+            <h3>{'Wyprodukowana energia (TWh / rok)'}</h3>
+            <ComparisonTable
+              current={today.energy}
+              proposed={results.energy}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(0)}
+            />
+            <h3>
+              {'Emisje CO'}
+              <sub>2</sub>
+              {' (mln ton / rok)'}
+            </h3>
+            <ComparisonTable
+              current={today.co2}
+              proposed={results.co2}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(3)}
+            />
+          </div>
+        ) : null}
       </div>
     )
   }
