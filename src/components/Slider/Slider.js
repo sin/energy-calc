@@ -14,7 +14,7 @@ export default function Slider({ name, value, update }) {
           <span className="Slider__unit">{' MW'}</span>
         </div>
       </div>
-      <InputRange maxValue={25000} minValue={0} step={500} value={value} onChange={update} />
+      <InputRange maxValue={35000} minValue={0} step={500} value={value} onChange={update} />
     </div>
   )
 }
