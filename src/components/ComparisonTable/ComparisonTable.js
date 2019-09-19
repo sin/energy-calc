@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from '../Table/Table'
 import { LABELS } from '../../simulator/constants'
 import { round, identity } from '../../simulator/utils'
 import './ComparisonTable.css'
@@ -40,7 +41,7 @@ export default function ComparisonTable({
     : []
 
   return (
-    <table className="ComparisonTable">
+    <Table className="ComparisonTable">
       <thead>
         <Header values={LABELS} isHeader={true} totalLabel={totalLabel}></Header>
       </thead>
@@ -49,6 +50,6 @@ export default function ComparisonTable({
         <Row values={proposed} title="Proponowany miks" format={format} total={totalProposed}></Row>
         <Row values={diff} title="Różnica" format={format} total={totalDiff}></Row>
       </tbody>
-    </table>
+    </Table>
   )
 }
