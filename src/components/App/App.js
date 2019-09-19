@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import * as store from '../../store'
 import Slider from '../Slider/Slider'
 import InfoBox from '../InfoBox/InfoBox'
-
+import ComparisonTable from '../ComparisonTable/ComparisonTable'
 import { getData } from '../../simulator'
 import { INSTALLED_TODAY } from '../../simulator/constants'
-import { formatNumber } from '../../simulator/utils'
+import { formatNumber, sum } from '../../simulator/utils'
 import './App.css'
 
 const installed = store.load()
@@ -22,6 +22,7 @@ class App extends Component {
 
     this.state = defaultState
     this.reset = this.reset.bind(this)
+    this.toggleDetails = this.toggleDetails.bind(this)
   }
 
   update(name, value) {
@@ -39,10 +40,15 @@ class App extends Component {
     this.setState(currentState => ({ ...currentState, installed, results: getData(installed) }))
   }
 
+  toggleDetails() {
+    this.setState(currentState => ({ ...currentState, isDetails: !currentState.isDetails }))
+  }
+
   render() {
     const { installed, results, today } = this.state
     const { nuclear, hydro, solar, wind, chp, gas, coal, oil, demand } = installed
     const hasDeficit = demand - results.available > 0
+
     return (
       <div className="App">
         <div className="row">
@@ -123,12 +129,56 @@ class App extends Component {
               </div>
             </div>
             <div className="Buttons">
+              <button onClick={this.toggleDetails} className="DetailsToggle">
+                {this.state.isDetails ? 'ukryj' : 'pokaż'}
+                {' dane szczegółowe'}
+              </button>
               <button onClick={this.reset} className="ResetButton">
                 Reset
               </button>
             </div>
           </div>
         </div>
+        {this.state.isDetails ? (
+          <div className="Details">
+            <h3>{'Moc zainstalowana (GW)'}</h3>
+            <ComparisonTable
+              current={today.installed}
+              proposed={results.installed}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(3)}
+            />
+            <h3>{'Moc dostępna (GW)'}</h3>
+            <ComparisonTable
+              current={today.available}
+              proposed={results.available}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(3)}
+            />
+            <h3>{'Wyprodukowana energia (TWh / rok)'}</h3>
+            <ComparisonTable
+              current={today.energy}
+              proposed={results.energy}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(0)}
+            />
+            <h3>
+              {'Emisje CO'}
+              <sub>2</sub>
+              {' (mln ton / rok)'}
+            </h3>
+            <ComparisonTable
+              current={today.co2}
+              proposed={results.co2}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber(3)}
+            />
+          </div>
+        ) : null}
       </div>
     )
   }
