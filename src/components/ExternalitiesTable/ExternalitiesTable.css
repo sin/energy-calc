@@ -1,3 +1,18 @@
 .ExternalitiesTable th:first-child {
     width: 55%;
 }
+
+.ExternalitiesTable th,
+.ExternalitiesTable td {
+    white-space: normal;
+}
+
+@media(max-width: 840px) {
+    .ExternalitiesTable {
+        min-width: auto;
+    }
+
+    .ExternalitiesTable th:first-child {
+        width: 35%;
+    }
+}
