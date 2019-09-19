@@ -39,7 +39,7 @@ export const MAX_CAPACITY = {
 export const CAPACITY_FACTORS = {
   nuclear: 0.9,
   hydro: 0.82,
-  wind: 0.9,
+  wind: 0.09,
   solar: 0,
   chp: 0.77,
   gas: 0.9,
