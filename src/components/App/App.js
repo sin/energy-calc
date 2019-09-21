@@ -89,7 +89,7 @@ class App extends Component {
               </div>
               <div className="column">
                 <InfoBox
-                  name="Emisje CO2"
+                  name="Emisje CO₂"
                   value={formatNumber({ commaPos: 3 })(results.totalCO2)}
                   unit={'mln ton'}
                 />

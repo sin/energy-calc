@@ -1,0 +1,15 @@
+.InfoIcon {
+    background: transparent;
+    padding: 0;
+    margin-left: 5px;
+    border: 0;
+    font-size: 1.1em;
+    color: darkgray;
+    cursor: pointer;
+    outline: none;
+}
+
+.InfoIcon:hover,
+.InfoIcon:active {
+    color: gray;
+}
