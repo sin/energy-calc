@@ -46,8 +46,8 @@ export default function ComparisonTable({
         <Header values={LABELS} isHeader={true} totalLabel={totalLabel}></Header>
       </thead>
       <tbody>
-        <Row values={current} title="Aktualnie" format={format} total={totalCurrent}></Row>
         <Row values={proposed} title="Twoja propozycja" format={format} total={totalProposed}></Row>
+        <Row values={current} title="Aktualnie" format={format} total={totalCurrent}></Row>
         <Row values={diff} title="Różnica" format={format} total={totalDiff}></Row>
       </tbody>
     </Table>
