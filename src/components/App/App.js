@@ -76,32 +76,32 @@ class App extends Component {
               <div className="column">
                 <InfoBox
                   name="Moc zainstalowana"
-                  value={formatNumber({ commaPos: 3 })(results.totalInstalled)}
+                  value={formatNumber({ commaPos: 3, fractionDigits: 1, minFractionDigits: 1 })(
+                    results.totalInstalled
+                  )}
                   unit={'GW'}
                 />
                 <InfoBox
                   name="Moc dostępna"
-                  value={formatNumber({ commaPos: 3 })(results.totalAvailable)}
+                  value={formatNumber({ commaPos: 3, fractionDigits: 1, minFractionDigits: 1 })(
+                    results.totalAvailable
+                  )}
                   unit={'GW'}
                   type={hasDeficit ? 'warning' : ''}
                 />
-                <InfoBox name="Ratio" value={formatNumber(0)(results.ratio)} />
+                <InfoBox name="Ratio" value={formatNumber({ fractionDigits: 1 })(results.ratio)} />
               </div>
               <div className="column">
-                <InfoBox
-                  name="Emisje CO₂"
-                  value={formatNumber({ commaPos: 3 })(results.totalCO2)}
-                  unit={'mln ton'}
-                />
+                <InfoBox name="Emisje CO₂" value={formatNumber()(results.totalCO2)} unit={'kt'} />
                 <InfoBox
                   name="Odpady jądrowe"
-                  value={formatNumber()(results.nuclear)}
-                  unit={'tys. ton'}
+                  value={formatNumber({ fractionDigits: 1 })(results.nuclear)}
+                  unit={'kt'}
                 />
                 <InfoBox
                   name="Odpady stałe"
                   value={formatNumber()(results.totalWaste)}
-                  unit={'tys. ton'}
+                  unit={'kt'}
                 />
               </div>
             </div>
@@ -145,14 +145,14 @@ class App extends Component {
             <h3>
               {'Emisje CO'}
               <sub>2</sub>
-              {' (mln ton / rok)'}
+              {' (kt / rok)'}
             </h3>
             <ComparisonTable
               current={today.co2}
               proposed={results.co2}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
+              format={formatNumber()}
             />
             <h3>{'Wyprodukowana energia (TWh / rok)'}</h3>
             <ComparisonTable
@@ -160,7 +160,7 @@ class App extends Component {
               proposed={results.energy}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber({ fractionDigits: 0 })}
+              format={formatNumber({ fractionDigits: 1 })}
             />
             <h3>{'Moc zainstalowana (GW)'}</h3>
             <ComparisonTable
@@ -168,7 +168,7 @@ class App extends Component {
               proposed={results.installed}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
+              format={formatNumber({ commaPos: 3, fractionDigits: 1 })}
             />
             <h3>{'Moc dostępna (GW)'}</h3>
             <ComparisonTable
@@ -176,7 +176,7 @@ class App extends Component {
               proposed={results.available}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
-              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
+              format={formatNumber({ commaPos: 3, fractionDigits: 1 })}
             />
             <h3>{'Wpływ na środowisko'}</h3>
             <ExternalitiesTable current={today} proposed={results} />

@@ -27,7 +27,7 @@ export default function ExternalitiesTable({ current, proposed }) {
       )
     },
     {
-      label: 'Dwutlenek węgla (g / kWh)',
+      label: 'Dwutlenek węgla (gCO₂/kWh)',
       values: [currentCO2kWh, proposedCO2kWh, proposedCO2kWh - currentCO2kWh].map(
         formatNumber({ fractionDigits: 0 })
       )
