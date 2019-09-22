@@ -142,18 +142,14 @@ class App extends Component {
         </div>
         {this.state.isDetails ? (
           <div className="Details">
-            <h3>{'Moc zainstalowana (GW)'}</h3>
+            <h3>
+              {'Emisje CO'}
+              <sub>2</sub>
+              {' (mln ton / rok)'}
+            </h3>
             <ComparisonTable
-              current={today.installed}
-              proposed={results.installed}
-              totalLabel={'Łącznie'}
-              totalFn={arr => arr.reduce(sum)}
-              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
-            />
-            <h3>{'Moc dostępna (GW)'}</h3>
-            <ComparisonTable
-              current={today.available}
-              proposed={results.available}
+              current={today.co2}
+              proposed={results.co2}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
               format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
@@ -166,14 +162,18 @@ class App extends Component {
               totalFn={arr => arr.reduce(sum)}
               format={formatNumber({ fractionDigits: 0 })}
             />
-            <h3>
-              {'Emisje CO'}
-              <sub>2</sub>
-              {' (mln ton / rok)'}
-            </h3>
+            <h3>{'Moc zainstalowana (GW)'}</h3>
             <ComparisonTable
-              current={today.co2}
-              proposed={results.co2}
+              current={today.installed}
+              proposed={results.installed}
+              totalLabel={'Łącznie'}
+              totalFn={arr => arr.reduce(sum)}
+              format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
+            />
+            <h3>{'Moc dostępna (GW)'}</h3>
+            <ComparisonTable
+              current={today.available}
+              proposed={results.available}
               totalLabel={'Łącznie'}
               totalFn={arr => arr.reduce(sum)}
               format={formatNumber({ commaPos: 3, fractionDigits: 0 })}
