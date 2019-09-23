@@ -43,10 +43,12 @@ export const transpose = array => Object.keys(array[0]).map(column => array.map(
 export const formatNumber = ({
   commaPos = 0,
   fractionDigits = 0,
-  minFractionDigits = 0
+  minFractionDigits = 0,
+  isPercent = false
 } = {}) => value =>
-  Number((value / 10 ** commaPos).toFixed(fractionDigits)).toLocaleString([], {
-    minimumFractionDigits: minFractionDigits
+  Number((value / 10 ** commaPos).toFixed(isPercent ? 2 : fractionDigits)).toLocaleString([], {
+    minimumFractionDigits: minFractionDigits,
+    style: isPercent ? 'percent' : 'decimal'
   })
 
 /**
