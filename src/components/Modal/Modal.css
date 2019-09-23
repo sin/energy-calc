@@ -1,0 +1,37 @@
+.Modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.Modal__modal {
+    position: fixed;
+    top: 220px;
+    left: 50%;
+    width: 700px;
+    max-height: calc(100vh - 440px);
+    transform: translate(-50%, 0%);
+    overflow-y: auto;
+    background: white;
+    border-radius: 8px;
+}
+
+.Modal__scrollable {
+    bottom: 15px;
+    width: 100%;
+    max-height: 100%;
+    overflow: scroll;
+}
+
+.Modal__content {
+    padding: 0 20px;
+}
+
+.Modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

@@ -1,0 +1,15 @@
+.CloseIcon {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: 2em;
+    color: black;
+    cursor: pointer;
+    outline: none;
+}
+
+.CloseIcon:hover,
+.CloseIcon:active {
+    color: gray;
+}
