@@ -3,6 +3,7 @@ import * as store from '../../store'
 import Slider from '../Slider/Slider'
 import InfoBox from '../InfoBox/InfoBox'
 import ComparisonTable from '../ComparisonTable/ComparisonTable'
+import Modal from '../Modal/Modal'
 import { getData } from '../../simulator'
 import { INSTALLED_TODAY } from '../../simulator/constants'
 import { formatNumber, sum } from '../../simulator/utils'
@@ -12,6 +13,8 @@ import ExternalitiesTable from '../ExternalitiesTable/ExternalitiesTable'
 const installed = store.load()
 const defaultState = {
   installed,
+  isModal: false,
+  modalContent: null,
   isDetails: false,
   today: getData(INSTALLED_TODAY),
   results: getData(installed)
@@ -23,7 +26,10 @@ class App extends Component {
 
     this.state = defaultState
     this.reset = this.reset.bind(this)
+    this.update = this.update.bind(this)
     this.toggleDetails = this.toggleDetails.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   update(name, value) {
@@ -45,9 +51,19 @@ class App extends Component {
     this.setState(currentState => ({ ...currentState, isDetails: !currentState.isDetails }))
   }
 
+  openModal(name) {
+    this.setState(currentState => ({ ...currentState, isModal: true, modalContent: name }))
+  }
+
+  closeModal() {
+    this.setState(currentState => ({ ...currentState, isModal: false, modalContent: null }))
+  }
+
   render() {
-    const { installed, results, today } = this.state
+    const { state, update, openModal } = this
+    const { installed, results, today, isDetails, isModal, modalContent } = state
     const { nuclear, hydro, solar, wind, chp, gas, coal, oil, demand } = installed
+
     const hasDeficit = demand - results.totalAvailable > 0
 
     return (
@@ -75,33 +91,51 @@ class App extends Component {
             <div className="row">
               <div className="column">
                 <InfoBox
-                  name="Moc zainstalowana"
+                  name="installed"
+                  title="Moc zainstalowana"
                   value={formatNumber({ commaPos: 3, fractionDigits: 1, minFractionDigits: 1 })(
                     results.totalInstalled
                   )}
                   unit={'GW'}
+                  openModal={openModal}
                 />
                 <InfoBox
-                  name="Moc dostępna"
+                  name="available"
+                  title="Moc dostępna"
                   value={formatNumber({ commaPos: 3, fractionDigits: 1, minFractionDigits: 1 })(
                     results.totalAvailable
                   )}
                   unit={'GW'}
                   type={hasDeficit ? 'warning' : ''}
+                  openModal={openModal}
                 />
-                <InfoBox name="Ratio" value={formatNumber({ fractionDigits: 1 })(results.ratio)} />
+                <InfoBox
+                  name="ratio"
+                  title="Ratio"
+                  value={formatNumber({ fractionDigits: 1 })(results.ratio)}
+                />
               </div>
               <div className="column">
-                <InfoBox name="Emisje CO₂" value={formatNumber()(results.totalCO2)} unit={'kt'} />
                 <InfoBox
-                  name="Odpady jądrowe"
-                  value={formatNumber({ fractionDigits: 1 })(results.nuclear)}
+                  name="emissions"
+                  title="Emisje CO₂"
+                  value={formatNumber()(results.totalCO2)}
                   unit={'kt'}
+                  openModal={openModal}
                 />
                 <InfoBox
-                  name="Odpady stałe"
+                  name="nuclearWaste"
+                  title="Odpady jądrowe"
+                  value={formatNumber({ fractionDigits: 1 })(results.nuclear)}
+                  unit={'kt'}
+                  openModal={openModal}
+                />
+                <InfoBox
+                  name="solidWaste"
+                  title="Odpady stałe"
                   value={formatNumber()(results.totalWaste)}
                   unit={'kt'}
+                  openModal={openModal}
                 />
               </div>
             </div>
@@ -110,28 +144,56 @@ class App extends Component {
             <div className="row">
               <div className="column">
                 <Slider
-                  name="Atom"
+                  name="nuclear"
+                  title="Atom"
                   value={nuclear}
-                  update={value => this.update('nuclear', value)}
+                  update={update}
+                  openModal={openModal}
                 />
-                <Slider name="Hydro" value={hydro} update={value => this.update('hydro', value)} />
-                <Slider name="Słońce" value={solar} update={value => this.update('solar', value)} />
-                <Slider name="Wiatr" value={wind} update={value => this.update('wind', value)} />
+                <Slider
+                  name="hydro"
+                  title="Hydro"
+                  value={hydro}
+                  update={update}
+                  openModal={openModal}
+                />
+                <Slider
+                  name="solar"
+                  title="Słońce"
+                  value={solar}
+                  update={update}
+                  openModal={openModal}
+                />
+                <Slider
+                  name="wind"
+                  title="Wiatr"
+                  value={wind}
+                  update={update}
+                  openModal={openModal}
+                />
               </div>
               <div className="column">
                 <Slider
-                  name="Kogeneracja"
+                  name="chp"
+                  title="Kogeneracja"
                   value={chp}
-                  update={value => this.update('chp', value)}
+                  update={update}
+                  openModal={openModal}
                 />
-                <Slider name="Gaz" value={gas} update={value => this.update('gas', value)} />
-                <Slider name="Węgiel" value={coal} update={value => this.update('coal', value)} />
-                <Slider name="Ropa" value={oil} update={value => this.update('oil', value)} />
+                <Slider name="gas" title="Gaz" value={gas} update={update} openModal={openModal} />
+                <Slider
+                  name="coal"
+                  title="Węgiel"
+                  value={coal}
+                  update={update}
+                  openModal={openModal}
+                />
+                <Slider name="oil" title="Ropa" value={oil} update={update} openModal={openModal} />
               </div>
             </div>
             <div className="Buttons">
               <button onClick={this.toggleDetails} className="DetailsToggle">
-                {this.state.isDetails ? 'ukryj' : 'pokaż'}
+                {isDetails ? 'ukryj' : 'pokaż'}
                 {' dane szczegółowe'}
               </button>
               <button onClick={this.reset} className="ResetButton">
@@ -140,7 +202,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        {this.state.isDetails ? (
+        {isDetails ? (
           <div className="Details">
             <h3>
               {'Emisje CO'}
@@ -182,6 +244,7 @@ class App extends Component {
             <ExternalitiesTable current={today} proposed={results} />
           </div>
         ) : null}
+        {isModal && <Modal content={modalContent} close={this.closeModal} />}
       </div>
     )
   }
