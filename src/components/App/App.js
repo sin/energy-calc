@@ -240,6 +240,12 @@ class App extends Component {
               totalFn={arr => arr.reduce(sum)}
               format={formatNumber({ commaPos: 3, fractionDigits: 1 })}
             />
+            <h3>{'Capacity factors'}</h3>
+            <ComparisonTable
+              current={today.capacityFactors}
+              proposed={results.capacityFactors}
+              format={formatNumber({ isPercent: true })}
+            />
             <h3>{'Wpływ na środowisko'}</h3>
             <ExternalitiesTable current={today} proposed={results} />
           </div>

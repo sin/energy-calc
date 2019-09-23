@@ -2,7 +2,7 @@ import { getAvailable } from './getAvailable'
 import { getPowers } from './getPowers'
 import { getEnergy } from './getEnergy'
 import { getExternalities } from './getExternalities'
-import { sum, round } from './utils'
+import { sum, round, roundTo, powerToEnergy } from './utils'
 import { KEYS } from './constants'
 
 export function getData(data) {
@@ -12,6 +12,9 @@ export function getData(data) {
   const powers = getPowers(data)
   const energy = getEnergy(powers)
   const { co2, fuel, waste, nuclear } = getExternalities(energy)
+  const capacityFactors = energy.map(
+    (energy, index) => roundTo(2)(energy / powerToEnergy(installed[index])) || 0
+  )
 
   const totalEnergy = energy.reduce(sum)
   const totalInstalled = installed.reduce(sum)
@@ -27,6 +30,7 @@ export function getData(data) {
     available,
     powers,
     energy,
+    capacityFactors,
     co2,
     fuel,
     waste,
