@@ -1,9 +1,9 @@
 import React from 'react'
-import CloseIcon from '../CloseIcon/CloseIcon'
+import { CloseIcon } from '../'
 import ModalContent from '../../texts/'
 import './Modal.css'
 
-export default function Modal({ close, content }) {
+export function Modal({ close, content }) {
   const ContentComponent = ModalContent[content]
   const onClick = event => {
     if (event.target === event.currentTarget) close()

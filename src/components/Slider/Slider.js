@@ -1,11 +1,11 @@
 import React from 'react'
 import InputRange from 'react-input-range'
-import InfoIcon from '../InfoIcon/InfoIcon'
+import { InfoIcon } from '../'
 
 import 'react-input-range/lib/css/index.css'
 import './Slider.css'
 
-export default function Slider({ name, title, value, update, openModal }) {
+export function Slider({ name, title, value, update, openModal }) {
   const onChange = value => update(name, value)
   return (
     <div className="Slider">

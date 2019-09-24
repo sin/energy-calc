@@ -1,9 +1,9 @@
 import React from 'react'
-import Table from '../Table/Table'
+import { Table } from '../'
 import { formatNumber } from '../../simulator/utils'
 import './ExternalitiesTable.css'
 
-export default function ExternalitiesTable({ current, proposed }) {
+export function ExternalitiesTable({ current, proposed }) {
   const currentCO2kWh = current.totalCO2 / current.totalEnergy
   const proposedCO2kWh = proposed.totalCO2 / proposed.totalEnergy
 
