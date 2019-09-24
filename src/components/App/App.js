@@ -81,7 +81,7 @@ class App extends Component {
           <div className="column lead">
             <p>
               Tutaj masz możliwość decydowania o produkcji energii elektrycznej w Polsce. Wyzwanie
-              polega na posiadaniu wystarczającej mocy, gdy popyt jest najwyszy, przy jak
+              polega na posiadaniu wystarczającej mocy, gdy zapotrzebowanie jest najwysze, przy jak
               najmniejszych konsekwencjach środowiskowych. Ty budujesz - ty decydujesz!
             </p>
           </div>
@@ -277,6 +277,15 @@ class App extends Component {
           </div>
         ) : null}
         {isModal && <Modal content={modalContent} close={this.closeModal} />}
+        <footer className="Footer">
+          <a
+            href="http://fota4climate.org/"
+            title="FOTA4Climate"
+            target="_blank"
+            rel="noopener noreferrer">
+            <img src="./fota4climate-logo.png" alt="FOTA4Climate" />
+          </a>
+        </footer>
       </div>
     )
   }
