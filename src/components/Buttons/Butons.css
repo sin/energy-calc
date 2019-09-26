@@ -1,0 +1,35 @@
+.Buttons {
+    padding: 20px 15px;
+    text-align: right;
+}
+
+.Buttons button {
+    outline: none;
+    cursor: pointer;
+}
+
+.Buttons__toggle-results {
+    font-size: 0.9em;
+    border: 0;
+    padding-right: 15px;
+    color: #999;
+}
+
+.Buttons__toggle-results:hover,
+.Buttons__toggle-results:active {
+    color: #666;
+}
+
+.Buttons__reset {
+    color: white;
+    font-size: 1.15em;
+    background: #10a2d3;
+    padding: 10px;
+    border-radius: 6px;
+    border: 0;
+}
+
+.Buttons__reset:active,
+.Buttons__reset:hover {
+    background: #057da5;
+}
